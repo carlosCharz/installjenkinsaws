@@ -18,12 +18,16 @@ yum remove java-1.7.0-openjdk
 ```
 
 ## Install Jenkins 2.x
+1 Download Jenkins from the Red Hat Repository
 ```
-Download Jenkins from the Red Hat Repository:
 wget -O /etc/yum.repos.d/jenkins.repo http://pkg.jenkins-ci.org/redhat/jenkins.repo
-Import the verification key using the package manager RPM:
+```
+2 Import the verification key using the package manager RPM
+```
 rpm --import https://jenkins-ci.org/redhat/jenkins-ci.org.key
-Install Jenkins with yum command:
+```
+3 Install Jenkins with yum command
+```
 yum install jenkins
 ```
 
@@ -33,18 +37,22 @@ service jenkins start
 ```
 
 ## Jenkins Paths
+1 To change the default port of Jenkins you need to edit the jenkins config file
 ```
-If you want to change the default port of Jenkins you need to edit the following file:
 vim  /etc/sysconfig/jenkins
-Change the port according your desired configuration: (vi commands: "i" for insert mode, "ESC" key to escape the inserting mode, ":wq" for write an quit)
+```
+2 Change the port according your desired configuration (vi commands: "i" for insert mode, "ESC" key to escape the inserting mode, ":wq" for write an quit) 
+```
 JENKINS_PORT=”8081″
 ```
 
 ## Check Jenkins Installation
 * fuser: to display the process id(PID) of every process using the specified files
-* netstat: to list out all the network (socket) connections on a system
 ```
 fuser -v -n tcp 8080
+```
+* netstat: to list out all the network (socket) connections on a system
+```
 netstat -na | grep 8080
 ```
 
