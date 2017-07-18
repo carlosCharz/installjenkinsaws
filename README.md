@@ -43,7 +43,7 @@ vim  /etc/sysconfig/jenkins
 ```
 2 Change the port according your desired configuration (vi commands: "i" for insert mode, "ESC" key to escape the inserting mode, ":wq" for write an quit) 
 ```
-JENKINS_PORT=”8081″
+JENKINS_PORT="8081"
 ```
 
 ## Check Jenkins Installation
