@@ -19,19 +19,28 @@ yum remove java-1.7.0-openjdk
 
 ## Install Jenkins 2.x
 ```
-yum install 
+Download Jenkins from the Red Hat Repository:
+wget -O /etc/yum.repos.d/jenkins.repo http://pkg.jenkins-ci.org/redhat/jenkins.repo
+Import the verification key using the package manager RPM:
+rpm --import https://jenkins-ci.org/redhat/jenkins-ci.org.key
+Install Jenkins with yum command:
+yum install jenkins
+```
+
+## Start Jenkins Service
+```
+service jenkins start
 ```
 
 ## Jenkins Paths
 ```
-cd  /usr/share/tomcat8
-Edit the tomcat-users file: 
-vim /usr/share/tomcat8/conf/tomcat-users.xml
-Add this line according your desired configuration: (vi commands: "i" for insert mode, "ESC" key to escape the inserting mode, ":wq" for write an quit)
-<user name="admin" password="YOURPASSWORD" roles="admin,manager,admin-gui,admin-script,manager-gui,manager-script,manager-jmx,manager-status" />
+If you want to change the default port of Jenkins you need to edit the following file:
+vim  /etc/sysconfig/jenkins
+Change the port according your desired configuration: (vi commands: "i" for insert mode, "ESC" key to escape the inserting mode, ":wq" for write an quit)
+JENKINS_PORT=”8081″
 ```
 
-## Check Tomcat Installation
+## Check Jenkins Installation
 * fuser: to display the process id(PID) of every process using the specified files
 * netstat: to list out all the network (socket) connections on a system
 ```
@@ -39,13 +48,8 @@ fuser -v -n tcp 8080
 netstat -na | grep 8080
 ```
 
-## Start Tomcat Service
+## Set Auto Start for Jenkins Service
 ```
-service tomcat8 start
-```
-
-## Set Auto Start for Tomcat Service
-```
-sudo chkconfig --list tomcat8
-sudo chkconfig tomcat8 on
+sudo chkconfig --list jenkins
+sudo chkconfig jenkins on
 ```
